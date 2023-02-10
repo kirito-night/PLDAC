@@ -1,0 +1,5 @@
+.DS_Store
+extract/*/*.jpg
+extract/*/*.npy
+result/*/*.jpg
+
