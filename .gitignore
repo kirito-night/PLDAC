@@ -3,3 +3,6 @@ extract/*/*.jpg
 extract/*/*.npy
 result/*/*.jpg
 
+resource/video_boite_entiere-test.ts
+*.ts
+result/nid.zip
