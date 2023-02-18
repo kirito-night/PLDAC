@@ -4,5 +4,10 @@ extract/*/*.npy
 result/*/*.jpg
 
 resource/video_boite_entiere-test.ts
-*.ts
+
 result/nid.zip
+resource/video_juste_nid-test.ts
+.gitignore
+resource/video_limitee_nourriture-test.ts
+result/nid/location_dectection_1.ts
+result/boite/location_dectection_1.avi
