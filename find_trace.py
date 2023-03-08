@@ -3,7 +3,7 @@ from track import *
 import numpy as np
 import pandas as pd
 ## include source
-show_fourmis=pd.read_csv('result/nid/location_dectection_diplay.csv',dtype=np.int32)
+show_fourmis=pd.read_csv('result/boite/location_dectection_diplay.csv',dtype=np.int32)
 
 #定义输出文件
 Fourcc = cv.VideoWriter_fourcc(*'MPEG')
