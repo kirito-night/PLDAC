@@ -4,15 +4,8 @@ from scipy.signal import convolve2d
 import pandas as pd
 import cv2 as cv
 
-pic_one = cv.imread('extract/nid/500.jpg')
+pic_one = cv.imread('extract/nid/600.jpg')
 
-
-pic_smalls=[]
-for i in range((pic_one.shape[0])//400):
-    for j in range((pic_one.shape[1])//400):
-        pic_smalls.append(pic_one[i*400:(i+1)*400,j*400:(j+1)*400])
-
-np.save('result/nid/x_500.npy',pic_smalls)
 # pic_labs=[]
 # for i in range(len(pic_smalls)):
 #     #print(pic_smalls[i].shape)
