@@ -13,6 +13,7 @@ result/nid/location_dectection_1.ts
 result/boite/location_dectection_1.avi
 .idea/*
 *-jvsc-*.ipynb
+*-checkpoint*.ipynb
 ./*.mp4
 bach-master/*
 *.ts
