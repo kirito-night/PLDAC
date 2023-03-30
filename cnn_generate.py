@@ -17,10 +17,11 @@ def on_EVENT_LBUTTONDOWN(event, x, y, flags, param):
         cv2.imshow("image", img_temp)
 
 # 图片路径
-str_list=[str(100*i) for i in range(1,15)] 
+str_list=[str(i) for i in range(100,1400)] 
 for s in str_list:
     print(s)
     img = cv2.imread('extract/nid/{}.jpg'.format(s))
+<<<<<<< HEAD
     for i in range(10):
         for j in range(14):
             img_temp=img[i*100:(i+1)*100,j*100:(j+1)*100]
@@ -44,11 +45,30 @@ for s in str_list:
 #     cv2.waitKey(250)
 #     index=int(input(""))
 #     y_list[i]=index
+=======
+    #for i in range(10):
+        #for j in range(14):
+    i,j=6,2
+    img_temp=img[i*100:(i+1)*100,j*100:(j+1)*100]
+    img_list.append(img[i*100:(i+1)*100,j*100:(j+1)*100])
+    a = []
+    cv2.namedWindow("image")
+    cv2.setMouseCallback("image", on_EVENT_LBUTTONDOWN)
+    cv2.imshow("image", img_temp)
+    keyboard = cv2.waitKey(0)
+    b=len(a)
+    #print(b)
+    if keyboard=='q':
+        cv2.destroyAllWindows()
+        exit()
+    y_list.append(b)
+
+>>>>>>> e177557c560a7d91915c9313bff3795875bded0b
 
 img_list=np.array(img_list,dtype=np.float32)
 y_list=np.array( y_list,dtype=np.float32)
-np.save('X_small_train.npy',img_list)
-np.save('Y_small_train.npy', y_list)
+np.save('X_small_train{}.npy'.format(str(i)+str(j)),img_list)
+np.save('Y_small_train{}.npy'.format(str(i)+str(j)), y_list)
 
 
 cv2.destroyAllWindows()
