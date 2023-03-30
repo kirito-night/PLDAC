@@ -36,14 +36,14 @@ for s in str_list:
                 cv2.destroyAllWindows()
                 exit()
             y_list.append(b)
-X=np.load('X_small_train.npy').astype(np.float32)
-y_list=np.load('Y_small_train.npy')
-Y_0=np.where(y_list==0)[0]
-for i in Y_0:
-    cv2.imshow("image", X[i])
-    cv2.waitKey(250)
-    index=int(input(""))
-    y_list[i]=index
+# X=np.load('X_small_train.npy').astype(np.float32)
+# y_list=np.load('Y_small_train.npy')
+# Y_0=np.where(y_list==0)[0]
+# for i in Y_0:
+#     cv2.imshow("image", X[i])
+#     cv2.waitKey(250)
+#     index=int(input(""))
+#     y_list[i]=index
 
 img_list=np.array(img_list,dtype=np.float32)
 y_list=np.array( y_list,dtype=np.float32)
