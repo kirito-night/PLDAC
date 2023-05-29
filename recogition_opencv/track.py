@@ -25,7 +25,7 @@ class EuclideanDistTracker:
             for id, pt in self.center_points.items():
                 dist = math.hypot(cx - pt[0], cy - pt[1])
 
-                if dist < 100:
+                if dist < 300:
                     self.center_points[id] = (cx, cy)
                     #print(self.center_points)
                     objects_bbs_ids.append([x, y, w, h, id])
@@ -38,13 +38,13 @@ class EuclideanDistTracker:
                 objects_bbs_ids.append([x, y, w, h, self.id_count])
                 self.id_count += 1
 
-        # Clean the dictionary by center points to remove IDS not used anymore
-        new_center_points = {}
-        for obj_bb_id in objects_bbs_ids:
-            _, _, _, _, object_id = obj_bb_id
-            center = self.center_points[object_id]
-            new_center_points[object_id] = center
+        # # Clean the dictionary by center points to remove IDS not used anymore
+        # new_center_points = {}
+        # for obj_bb_id in objects_bbs_ids:
+        #     _, _, _, _, object_id = obj_bb_id
+        #     center = self.center_points[object_id]
+        #     new_center_points[object_id] = center
 
-        # Update dictionary with IDs not used removed
-        self.center_points = new_center_points.copy()
+        # # Update dictionary with IDs not used removed
+        # self.center_points = new_center_points.copy()
         return objects_bbs_ids

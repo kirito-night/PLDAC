@@ -7,8 +7,8 @@ import matplotlib as mpl
 show_fourmis=pd.read_csv('result/boite/location_dectection_diplay.csv',dtype=np.int32)
 print('total ant detected:',len(show_fourmis['id'].unique()))
 #定义输出文件
-Fourcc = cv.VideoWriter_fourcc('m','p','4','v')
-out = cv.VideoWriter('result/boite/track_new.mp4',Fourcc, 25, (1440,1080),True)
+Fourcc = cv.VideoWriter_fourcc(*'MPEG')
+out = cv.VideoWriter('result/boite/track_new.ts',Fourcc, 25, (1440,1080),True)
 
 #打开一个视频文件
 capture = cv.VideoCapture(cv.samples.findFileOrKeep('resource/video_boite_entiere-test.ts'))

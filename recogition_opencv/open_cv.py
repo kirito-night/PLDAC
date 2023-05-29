@@ -10,7 +10,7 @@ import pandas as pd
 '''
 #定义输出文件
 Fourcc = cv.VideoWriter_fourcc(*'MPEG')
-out = cv.VideoWriter('result/boite/location_dectection.ts',Fourcc, 25, (1440,1080),False)
+out = cv.VideoWriter('result/nid/origin_location_dectection.mp4',Fourcc, 25, (1440,1080),False)
 tracker = EuclideanDistTracker() 
 #mat=[]
 mat_1=[]
@@ -24,7 +24,7 @@ else:
 
 
 #打开一个视频文件
-capture = cv.VideoCapture(cv.samples.findFileOrKeep('resource/video_boite_entiere-test.ts'))
+capture = cv.VideoCapture(cv.samples.findFileOrKeep('resource/video_juste_nid-test.ts'))
 #判断视频是否读取成功
 if not capture.isOpened():
     print('Unable to open')
@@ -42,6 +42,7 @@ while (True):
     ret, frame = capture.read()
     if frame is None:
         break
+    frame_ori=frame
     #使用定义的backSub对象,输入新的一帧frame,生成背景蒙版
     frame=cv.cvtColor(frame,cv.COLOR_BGR2GRAY)
     #frame=cv.GaussianBlur(frame,(5,5),2)
@@ -51,7 +52,7 @@ while (True):
     
     #将原视频的当前帧和蒙版做相加运算,将前景物体提取出来
     Object=cv.add(frame,frame,mask=fgMask)
-    Object=cv.blur(Object,(5,5))
+    #Object=cv.blur(Object,(5,5))
     _ ,Object = cv.threshold(Object, 80, 255, cv.THRESH_BINARY)
     Object=cv.blur(Object,(5,5))
     #_ ,Object = cv.threshold(Object, 80, 255, cv.THRESH_BINARY)
@@ -68,7 +69,7 @@ while (True):
     for cnt in contours:
         # 计算出每个轮廓内部的面积,并根据面积的大小去除那些不必要的噪声（比如树.草等等）
         area = cv.contourArea(cnt)
-        if area > 100 and area < 300:
+        if area > 500 and area < 1000:
             #cv.drawContours(Object, [cnt], -1, (0, 255, 0), 2)  # 画出移动物体的轮廓
             x, y, w, h = cv.boundingRect(cnt)
             detections.append([x, y, w, h])
@@ -102,8 +103,9 @@ while (True):
                 # Ajouter la fourmi à la liste
 
     cv.imshow('Frame', frame)
-    #cv.imshow('FG Mask', fgMask)
-    #cv.imshow('Object',Object)
+    cv.imshow('Frame_ori', frame_ori)
+    cv.imshow('FG Mask', fgMask)
+    cv.imshow('Object',Object)
 
     #将当前帧写入输出文件
     frame.dtype=np.uint8
@@ -122,7 +124,7 @@ while (True):
 #mat=np.array(mat,dtype=object)
 #np.save('result/boite/location_dectection.npy',mat)
 DataFrame = pd.DataFrame(mat_1)
-DataFrame.to_csv('result/boite/location_dectection.csv', index=False, sep=',')
+DataFrame.to_csv('result/boite/vert_location_dectection.csv', index=False, sep=',')
 
 #释放资源
 capture.release()
